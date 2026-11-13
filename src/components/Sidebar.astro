@@ -1,121 +1,39 @@
 ---
+import { profile, href } from '../data/profile';
+interface Props { selectedItem: string }
 const { selectedItem } = Astro.props;
+const links = [
+  { id: 'home', path: '', label: 'Home', icon: 'home' },
+  { id: 'research', path: 'research/', label: 'Research', icon: 'dns' },
+  { id: 'projects', path: 'projects/', label: 'Projects', icon: 'code' },
+  { id: 'blog', path: 'blog/', label: 'Blog', icon: 'writing' },
+  { id: 'about', path: 'about/', label: 'About', icon: 'person' },
+];
 ---
-
-<aside
-  data-animation="default"
-  data-collapse="medium"
-  data-duration="400"
-  data-easing="ease"
-  data-easing2="ease"
-  role="banner"
-  class="sidebar w-nav"
->
+<aside class="sidebar w-nav" data-collapse="medium">
   <div class="nav-content">
-    <a href="/" class="w-nav-brand" aria-label="home">
+    <a href={href()} class="w-nav-brand" aria-label={`${profile.name} — home`}>
       <div class="niv-data">
-        <img
-          src="/assets/sam.jpg"
-          loading="eager"
-          alt="Profile picture"
-          class="niv-image"
-        />
-        <div>
-          <div class="label-white">Sam Bernstein</div>
-          <div class="label-gray">Software Engineer</div>
-        </div>
+        <img src={href(profile.portrait || 'assets/waves.svg')} alt={profile.portrait ? `Portrait of ${profile.name}` : ''} class:list={['niv-image', { 'identity-mark': !profile.portrait }]} width="48" height="48" />
+        <div><div class="label-white">{profile.name}</div><div class="label-gray">Research & writing</div></div>
       </div>
     </a>
-
-    <nav role="navigation" class="w-nav-menu">
-      <a
-        href="/"
-        class={`nav-link-container w-inline-block ${
-          selectedItem === 'home' ? 'w--current' : ''
-        }`}
-      >
-        <img
-          src="/assets/home.svg"
-          loading="eager"
-          alt=""
-          class="nav-link-image"
-        />
-        <div>Home</div>
-      </a>
-      <a
-        href="/software-development"
-        class={`nav-link-container w-inline-block ${
-          selectedItem === 'software-development' ? 'w--current' : ''
-        }`}
-        aria-current={
-          selectedItem === 'software-development' ? 'page' : undefined
-        }
-      >
-        <img
-          src="/assets/code.svg"
-          loading="eager"
-          alt=""
-          class="nav-link-image"
-        />
-        <div>Software development</div>
-      </a>
-      <a
-        href="/devops"
-        class={`nav-link-container w-inline-block ${
-          selectedItem === 'devops' ? 'w--current' : ''
-        }`}
-      >
-        <img
-          src="/assets/dns.svg"
-          loading="eager"
-          alt=""
-          class="nav-link-image"
-        />
-        <div>DevOps</div>
-      </a>
-      <a
-        href="/personal-projects"
-        class={`nav-link-container w-inline-block ${
-          selectedItem === 'personal-projects' ? 'w--current' : ''
-        }`}
-      >
-        <img
-          src="/assets/favorite.svg"
-          loading="eager"
-          alt=""
-          class="nav-link-image"
-        />
-        <div>Personal projects</div>
-      </a>
+    <nav id="site-navigation" aria-label="Main navigation" class="w-nav-menu">
+      {links.map(link => <a href={href(link.path)} class:list={['nav-link-container', 'w-inline-block', {'w--current': selectedItem === link.id}]} aria-current={selectedItem === link.id ? 'page' : undefined}>
+        <img src={href(`assets/${link.icon}.svg`)} alt="" class="nav-link-image" width="24" height="24" /><div>{link.label}</div>
+      </a>)}
     </nav>
-
-    <div
-      class="navbar-icon-button w-nav-button"
-      style="-webkit-user-select: text;"
-      aria-label="menu"
-      role="button"
-      tabindex="0"
-    >
-      <img
-        src="/assets/menu.svg"
-        loading="eager"
-        alt=""
-        class="navbar-icon"
-      />
+    <div class="sidebar-links">
+      {profile.cv && <a href={href(profile.cv)}>CV ↗</a>}
+      {profile.github && <a href={profile.github}>GitHub ↗</a>}
+      {profile.email && <a href={`mailto:${profile.email}`}>Email ↗</a>}
     </div>
+    <button type="button" class="navbar-icon-button w-nav-button" aria-label="Toggle navigation" aria-controls="site-navigation" aria-expanded="false"><img src={href('assets/menu.svg')} alt="" class="navbar-icon" width="24" height="24" /></button>
   </div>
-
   <script>
     import { setupNav } from '../scripts/nav.js';
-    
-    let cleanup;
-    document.addEventListener('astro:page-load', () => {
-      if (cleanup) cleanup();
-      cleanup = setupNav();
-    });
-
-    document.addEventListener('astro:before-swap', () => {
-      if (cleanup) cleanup();
-    });
+    let cleanup: (() => void) | undefined;
+    document.addEventListener('astro:page-load', () => { cleanup?.(); cleanup = setupNav(); });
+    document.addEventListener('astro:before-swap', () => { cleanup?.(); });
   </script>
 </aside>

@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { href } from '../data/profile';
+const interests = [
+  ['Fast mathematical visualizations', 'Making mathematical structures and numerical behavior visible through responsive, interactive tools.'],
+  ['Numerical & randomized linear algebra', 'Numerical methods for linear systems and matrix computations, including approaches that use randomness.'],
+  ['Unconventional computing', 'Physical and analog approaches to computation, including the relationship between mechanical systems and linear algebra.'],
+  ['High-performance computing', 'Efficient parallel computation, with an interest in GPU methods and fast simulation.'],
+];
+---
+<Layout title="Research" selectedItem="research"><header><h1>Research interests</h1><p class="lead">My interests span mathematical visualization, numerical linear algebra, and physical approaches to computation.</p></header><section class="resouce-items" aria-label="Research interests">{interests.map(([title,description]) => <section class="single-item"><h2>{title}</h2><p>{description}</p></section>)}</section><a href={href('projects/')} class="subtle-link">Explore related projects ↗</a></Layout>

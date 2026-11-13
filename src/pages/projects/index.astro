@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects')).sort((a,b) => a.data.order - b.data.order);
+---
+<Layout title="Projects" selectedItem="projects"><section><h1>Projects</h1><p class="lead">Work on numerical methods, physical computation, and interactive visualization.</p></section><section class="projects-section" aria-label="Project list">{projects.map(project => <ProjectCard project={project} />)}</section></Layout>
