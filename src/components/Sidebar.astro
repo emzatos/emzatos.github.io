@@ -1,5 +1,6 @@
 ---
 import { profile, href } from '../data/profile';
+import ThemeToggle from './ThemeToggle.astro';
 interface Props { selectedItem: string }
 const { selectedItem } = Astro.props;
 const links = [
@@ -23,10 +24,13 @@ const links = [
         <img src={href(`assets/${link.icon}.svg`)} alt="" class="nav-link-image" width="24" height="24" /><div>{link.label}</div>
       </a>)}
     </nav>
+    <div class="sidebar-bottom">
+    <ThemeToggle />
     <div class="sidebar-links">
       {profile.cv && <a href={href(profile.cv)}>CV ↗</a>}
       {profile.github && <a href={profile.github}>GitHub ↗</a>}
       {profile.email && <a href={`mailto:${profile.email}`}>Email ↗</a>}
+    </div>
     </div>
     <button type="button" class="navbar-icon-button w-nav-button" aria-label="Toggle navigation" aria-controls="site-navigation" aria-expanded="false"><img src={href('assets/menu.svg')} alt="" class="navbar-icon" width="24" height="24" /></button>
   </div>

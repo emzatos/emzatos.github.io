@@ -8,12 +8,21 @@ const { title, description = profile.description } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={description} />
-  <meta name="theme-color" content="#161616" />
+  <meta name="theme-color" content="#211d19" />
   <title>{title}</title>
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   {Astro.site && <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />}
   <link rel="icon" type="image/svg+xml" href={href('assets/waves.svg')} />
+  <script is:inline>
+    // Apply the saved palette before the page paints. Night is the default.
+    (() => {
+      let theme = 'night';
+      try { if (localStorage.getItem('emran-theme') === 'day') theme = 'day'; } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'day' ? '#f5f3e9' : '#211d19');
+    })();
+  </script>
   <ClientRouter />
 </head>

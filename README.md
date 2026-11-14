@@ -22,6 +22,10 @@ Use `npm run astro -- dev status`, `npm run astro -- dev logs`, and `npm run ast
 - `src/content/blog/`: Markdown posts with `title`, `description`, `date`, and `draft`. Change `draft: true` to `draft: false` when ready to include a post. Drafts are excluded from all public routes and listings. The homepage shows the three latest posts.
 - `src/components/Sidebar.astro`: sidebar links.
 
+## Day and night themes
+
+The sidebar switch changes between the bark-and-fern night theme and a warm paper and moss-green day theme. Night uses bark-brown charcoal, warm ivory text, and fern-green accents. Night is the default; the choice is saved in local storage and retained across page navigation. Edit the palette variables in `src/styles/themes.css`. The day grid uses `public/assets/grid-day.svg` with moss-green lines and the same geometry as the original grid.
+
 ## GitHub Pages
 
 The site builds to static HTML in `dist/`. `SITE_URL` and `BASE_PATH` configure its public URL and repository prefix. All internal links and assets support a repository base path.
