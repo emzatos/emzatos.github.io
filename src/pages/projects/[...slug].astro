@@ -1,9 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ProjectTags from '../../components/ProjectTags.astro';
 import { href } from '../../data/profile';
 export async function getStaticPaths() { return (await getCollection('projects')).map(project => ({params: {slug: project.id}, props: {project}})); }
 const { project } = Astro.props;
 const { Content } = await render(project);
 ---
-<Layout title={project.data.title} description={project.data.description} selectedItem="projects"><a href={href('projects/')} class="subtle-link">← All projects</a><header class="article-header"><span class="entry-status">{project.data.status}</span><h1>{project.data.title}</h1><p class="lead">{project.data.description}</p><div class="chips-container">{project.data.tags.map(tag => <span class="single-chip small-chip">{tag}</span>)}</div></header><article class="prose"><Content /></article></Layout>
+<Layout title={project.data.title} description={project.data.description} selectedItem="projects"><a href={href('projects/')} class="subtle-link">← All projects</a><header class="article-header"><span class="entry-status">{project.data.status}</span><h1>{project.data.title}</h1><p class="lead">{project.data.description}</p><ProjectTags project={project.data} /></header><article class="prose"><Content /></article></Layout>

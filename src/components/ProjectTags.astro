@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>['data'];
+}
+
+const { tags, demo } = Astro.props.project;
+---
+
+<div class="chips-container">
+  {demo && (
+    <div class="demo-row">
+      <a href={demo} class="single-chip small-chip demo-link">Interactive demo here</a>
+    </div>
+  )}
+  {tags.map(tag => <span class="single-chip small-chip project-tag">{tag}</span>)}
+</div>
+
+<style>
+  .project-tag {
+    color: color-mix(in srgb, var(--text) 60%, transparent);
+    background-color: color-mix(in srgb, var(--chip) 20%, transparent);
+  }
+
+  .demo-row {
+    display: flex;
+    flex-basis: 100%;
+    margin-bottom: 15px;
+  }
+
+  .demo-link {
+    color: var(--page);
+    background-color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .demo-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
