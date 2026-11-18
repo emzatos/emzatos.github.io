@@ -1,13 +1,19 @@
 ---
 title: Eulerian fluid simulation with WebGPU
 description: Grid-based fluid simulation and parallel computation in the browser.
-tags: ['WebGPU', 'Fluid simulation', 'Numerical methods']
+tags: ['WebGPU', 'Fluid simulation', 'Computer graphics']
 order: 1
-status: Write-up forthcoming
+status: ""
 ---
 
 ## Overview
 
-This project brings together Eulerian fluid simulation, mathematical visualization, and high-performance computation using WebGPU.
+This project was my first attempt at writing code for the GPU. I implement the classic Stable Fluids algorithm based off [Stam's paper](http://graphics.cs.cmu.edu/nsp/course/15-464/Fall09/papers/StamFluidforGames.pdf).
 
-The implementation, interactive demo, and a detailed account of the methods and results will be added here.
+I utilized [TypeGPU](https://docs.swmansion.com/TypeGPU/) for this project, an early-stage framework for bringing a useful type system and graphics toolset to WebGPU programming. I highly recommend taking a look at their documents and examples, they have a great community!
+
+
+
+
+
+[View the project on GitHub ↗](https://github.com/emzatos/Prion-ABM)

@@ -6,7 +6,22 @@ const { project } = Astro.props;
 ---
 <a href={href(`projects/${project.id}/`)} class="projects-container research-card">
   <div class="single-projects-category"><div class="projects-category-image-container project-art" aria-hidden="true">
-    {project.id === 'chronic-wasting-disease' ? <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1.2"><path d="M45 48 84 37 126 56 139 98 112 136 65 141 35 103 45 48M45 48 76 81 35 103M84 37 76 81 116 91 126 56M76 81 65 141M116 91 112 136M76 81 112 136M116 91 139 98" opacity=".45" />{[[45,48],[84,37],[126,56],[139,98],[112,136],[65,141],[35,103],[76,81],[116,91]].map(([x,y],i) => <circle cx={x} cy={y} r={i === 7 ? 6 : 4} fill={i === 7 || i === 8 ? 'currentColor' : 'none'} />)}</g></svg> : project.id === 'eulerian-fluid-simulation' ? <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1.3">{Array.from({length:9}, (_,i) => <path d={`M25 ${40+i*12} C65 ${5+i*14} 95 ${155-i*12} 155 ${35+i*12}`} />)}</g></svg> : <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1">{Array.from({length:7},(_,i) => <><path d={`M35 ${40+i*16} Q90 ${15+i*18} 145 ${40+i*16}`} /><path d={`M${35+i*18} 40 Q${15+i*22} 90 ${35+i*18} 136`} /></>)}</g></svg>}
+    {project.id === 'sound-of-a-3d-drum' ? (
+      <svg viewBox="0 0 180 180" fill="none">
+        <g stroke="currentColor" stroke-width="1.2">
+          <path d="M25 99C25 74 44 54 69 53c17-1 29 11 40 7 10-4 13-13 25-14 14-1 26 9 28 23s-8 26-22 30c-15 4-20 13-28 24-9 13-23 20-39 20-27 0-48-19-48-44Z" />
+          <g opacity=".35" stroke-dasharray="2 3">
+            <path d="M60 54C91 73 108 117 84 142" />
+            <path d="M133 46C151 56 156 79 148 96" />
+          </g>
+          <g opacity=".8" stroke-linecap="round">
+            <path d="M60 54C39 78 53 129 84 142" />
+            <path d="M133 46C116 61 126 87 148 96" />
+            <path d="M25 99C45 122 75 124 98 106c14-11 28-5 48-23 7-6 12-13 15-18" />
+          </g>
+        </g>
+      </svg>
+    ) : project.id === 'chronic-wasting-disease' ? <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1.2"><path d="M45 48 84 37 126 56 139 98 112 136 65 141 35 103 45 48M45 48 76 81 35 103M84 37 76 81 116 91 126 56M76 81 65 141M116 91 112 136M76 81 112 136M116 91 139 98" opacity=".45" />{[[45,48],[84,37],[126,56],[139,98],[112,136],[65,141],[35,103],[76,81],[116,91]].map(([x,y],i) => <circle cx={x} cy={y} r={i === 7 ? 6 : 4} fill={i === 7 || i === 8 ? 'currentColor' : 'none'} />)}</g></svg> : project.id === 'eulerian-fluid-simulation' ? <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1.3">{Array.from({length:9}, (_,i) => <path d={`M25 ${40+i*12} C65 ${5+i*14} 95 ${155-i*12} 155 ${35+i*12}`} />)}</g></svg> : <svg viewBox="0 0 180 180" fill="none"><g stroke="currentColor" stroke-width="1">{Array.from({length:7},(_,i) => <><path d={`M35 ${40+i*16} Q90 ${15+i*18} 145 ${40+i*16}`} /><path d={`M${35+i*18} 40 Q${15+i*22} 90 ${35+i*18} 136`} /></>)}</g></svg>}
   </div></div>
   <div class="single-projects-content"><span class="entry-status">{project.data.status}</span><h3>{project.data.title}</h3><p>{project.data.description}</p><div class="chips-container">{project.data.tags.map(tag => <span class="single-chip small-chip">{tag}</span>)}</div></div>
 </a>

@@ -3,7 +3,7 @@ title: Agent-based modeling of chronic wasting disease
 description: A Julia agent-based model exploring how simulated CWD dynamics compare with published mechanistic models.
 tags: ['Julia', 'Agent-based modeling', 'Disease dynamics']
 order: 3
-status: Write-up forthcoming
+status: ""
 ---
 
 ## Overview
