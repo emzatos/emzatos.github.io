@@ -1,7 +1,7 @@
 ---
 title: The sound of a 3D drum
 description: Design a 3D shape with signed distance functions, compute its vibration modes, and listen to how it sounds.
-tags: ['Spectral geometry', 'Signed distance functions', 'Sound synthesis']
+tags: ['Spectral geometry', 'Computer graphics', 'Sound synthesis']
 order: 4
 status: Write-up forthcoming
 ---
