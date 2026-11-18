@@ -5,7 +5,7 @@ tags: ['WebGPU', 'Fluid simulation', 'Numerical methods']
 order: 1
 status: Write-up forthcoming
 date: 2026-11-11
-draft: false
+draft: true
 ---
 
 ## Overview

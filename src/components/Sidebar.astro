@@ -15,7 +15,7 @@ const links = [
   <div class="nav-content">
     <a href={href()} class="w-nav-brand" aria-label={`${profile.name} — home`}>
       <div class="niv-data">
-        <img src={href(profile.portrait || 'assets/waves.svg')} alt={profile.portrait ? `Portrait of ${profile.name}` : ''} class:list={['niv-image', { 'identity-mark': !profile.portrait }]} width="48" height="48" />
+        <img src={href('assets/waves.svg')} alt="Portrait of Emran Shafaq" class:list={['niv-image', { 'identity-mark': !profile.portrait }]} width="48" height="48" />
         <div><div class="label-white">{profile.name}</div><div class="label-gray">Research & writing</div></div>
       </div>
     </a>

@@ -7,9 +7,9 @@ export const profile = {
     'Unconventional computing',
     'High-performance computing',
   ],
-  portrait: '', // Place an image in public/ and set e.g. 'assets/portrait.jpg'.
-  email: '',
-  github: '', // Full URL to your GitHub profile.
+  portrait: 'assets/emran.png', // Place an image in public/ and set e.g. 'assets/portrait.jpg'.
+  email: 'emran.shafaq@gmail.com',
+  github: 'https://github.com/emzatos', // Full URL to your GitHub profile.
   cv: '', // Place a PDF in public/ and set e.g. 'cv.pdf'.
 };
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;

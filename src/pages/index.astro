@@ -1,13 +1,62 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { profile, href } from '../data/profile';
-import { getCollection } from 'astro:content';
-const projects = (await getCollection('projects')).sort((a,b) => a.data.order - b.data.order);
-const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime()).slice(0,3);
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { profile, href } from "../data/profile";
+import { getCollection } from "astro:content";
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
+
 <Layout selectedItem="home">
-  <section class="home-greeting"><h1>Hi, I’m Emran.</h1><p class="lead">I’m interested in fast mathematical visualizations, numerical and randomized linear algebra, unconventional computing, and high-performance computing.</p><p>This is where I share my projects and write about mathematics, computing, and other things that interest me.</p><a href={href('about/')} class="button w-button">More about me ↗</a></section>
-  <section class="projects-section" aria-labelledby="projects-heading"><div class="section-heading"><h2 id="projects-heading">Selected projects</h2><a href={href('projects/')} class="subtle-link">All projects ↗</a></div>{projects.map(project => <ProjectCard project={project} />)}</section>
-  <section aria-labelledby="writing-heading"><div class="section-heading"><h2 id="writing-heading">Recent writing</h2><a href={href('blog/')} class="subtle-link">Blog ↗</a></div>{posts.length ? <div class="post-list">{posts.map(post => <a class="post-entry" href={href(`blog/${post.id}/`)}><time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})}</time><h3>{post.data.title}</h3><p>{post.data.description}</p></a>)}</div> : <p class="empty-state">No posts yet. Notes on mathematics, computing, and personal interests will appear here.</p>}</section>
+  <section class="home-greeting">
+    <h1>Hi, I’m Emran.</h1>
+    <p class="lead">
+      I like doing math with computers.
+    </p>
+    <p>This is where I share my projects and write about mathematics, computing, and other things that interest me.</p>
+    <a href={href("about/")} class="button w-button">
+      More about me ↗
+    </a>
+  </section>
+  <section class="projects-section" aria-labelledby="projects-heading">
+    <div class="section-heading">
+      <h2 id="projects-heading">Selected projects</h2>
+      <a href={href("projects/")} class="subtle-link">
+        All projects ↗
+      </a>
+    </div>
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
+  </section>
+  <section aria-labelledby="writing-heading">
+    <div class="section-heading">
+      <h2 id="writing-heading">Recent writing</h2>
+      <a href={href("blog/")} class="subtle-link">
+        Blog ↗
+      </a>
+    </div>
+    {posts.length ? (
+      <div class="post-list">
+        {posts.map((post) => (
+          <a class="post-entry" href={href(`blog/${post.id}/`)}>
+            <time datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">No posts yet. Notes on mathematics, computing, and personal interests will appear here.</p>
+    )}
+  </section>
 </Layout>

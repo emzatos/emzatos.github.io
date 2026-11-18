@@ -1,5 +1,58 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { profile, href } from '../data/profile';
+import Layout from "../layouts/Layout.astro";
+import { profile, href } from "../data/profile";
 ---
-<Layout title="About" selectedItem="about"><header><h1>About me</h1><p class="lead">I’m Emran Shafaq.</p></header><article class="prose">{profile.portrait && <img class="about-portrait" src={href(profile.portrait)} alt={`Portrait of ${profile.name}`} width="240" height="280" />}<p>My interests include fast mathematical visualizations, numerical and randomized linear algebra, unconventional computing, and high-performance computing.</p><p>Outside of these projects, I’m interested in nature and analog synthesizers. This site is also a place for personal writing.</p><h2>Background</h2><p>A fuller bio, academic background, and research experience will be added here.</p><h2>Projects & writing</h2><p>You can find my computational work on the <a href={href('projects/')}>projects page</a>, and my notes and personal posts on the <a href={href('blog/')}>blog</a>.</p>{(profile.email || profile.github || profile.cv) && <><h2>Contact & links</h2><div class="about-links">{profile.email && <a href={`mailto:${profile.email}`}>Email ↗</a>}{profile.github && <a href={profile.github}>GitHub ↗</a>}{profile.cv && <a href={href(profile.cv)}>CV ↗</a>}</div></>}</article></Layout>
+
+<Layout title="About" selectedItem="about">
+    <article class="prose">
+        <header>
+            <h1>About me</h1>
+        </header>
+        {profile.portrait && (
+            <img
+                class="about-portrait"
+                src={href(profile.portrait)}
+                alt={`Portrait of ${profile.name}`}
+                width="240"
+                height="320"
+            />
+        )}
+        <p class="lead">Hi, I’m Emran!</p>
+        <p>
+            I'm currently applying for PhD positions in Applied and Computational Mathematics. I recently completed my Master's degree in Applied and Computational Mathematics at the University of Washington.
+            Before that, I was a software engineer at Microsoft working on Data Loss Prevention. I received my Bachelor's degrees in Pure Mathematics and Computer Science from the University of Texas at Austin.
+        </p>
+        <p>
+            My interests include fast mathematical visualizations, numerical and randomized linear algebra,
+            unconventional computing, high-performance computing, and spectral geometry. I love analog systems and learning how to leverage natural phenomena for computing. 
+        </p>
+        <p>
+            Outside of school and work, I enjoy teaching, watching movies, making music, and building electronics. 
+        </p>
+        <p>
+            You can find my computational work on the <a href={href("projects/")}>projects page</a>, and my notes and
+            personal posts on the <a href={href("blog/")}>blog</a>.
+        </p>
+        {(profile.email || profile.github || profile.cv) && (
+            <>
+                <h2>Contact & links</h2>
+                <div class="about-links">
+                    {profile.email && <a href={`mailto:${profile.email}`}>Email ↗</a>}
+                    {profile.github && <a href={profile.github}>GitHub ↗</a>}
+                    {profile.cv && <a href={href(profile.cv)}>CV ↗</a>}
+                </div>
+            </>
+        )}
+    </article>
+</Layout>
+
+<style>
+    .about-portrait {
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .lead {
+        margin-bottom: 10px;
+    }
+</style>
