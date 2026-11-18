@@ -1,0 +1,77 @@
+name: Dpeloy website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+      
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build Astro website
+        run: |
+          bun install --frozen-lockfile
+          bun run build
+      
+      - name: Build simulations
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/simulations"
+
+          jq -c '.simulations[]' simulations.json |
+          while read -r sim; do
+            repo=$(jq -r '.repo' <<< "$sim")
+            path=$(jq -r '.path' <<< "$sim")
+
+            echo "Building $repo at /$path/"
+            src="$RUNNER_TEMP/simulations/$path"
+
+            git clone --depth 1 \
+              "https://github.com/$repo.git" "$src"
+
+            (
+              cd "$src"
+              bun install --frozen-lockfile
+              bun run build --base="/$path/"
+            )
+
+            mkdir -p "dist/$path"
+            cp -R "$src/dist/." "dist/$path"
+          done
+
+      - name: Configure Github Pages
+        uses: actions/configure-pages@v5
+      
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
