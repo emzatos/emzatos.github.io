@@ -2,6 +2,34 @@
 # yarn lockfile v1
 
 
+"@astrojs/compiler-binding-linux-x64-gnu@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.5.3.tgz"
+  integrity sha512-8rIMmEFtuVe5mMvwBR59uSHZL7CaJ/CPm5Hh3r3Bd5JLoSPkBbl1xk8kwUkNKJ0QSbGEFdWkUnx73JRZq46i2A==
+
+"@astrojs/compiler-binding@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.npmjs.org/@astrojs/compiler-binding/-/compiler-binding-0.5.3.tgz"
+  integrity sha512-fHG6eWKvnSlV11dUMZSi4AynOGjVbNBgZZc704Hi9DW8WeKtbsS7fJQT3omz1Nba+5mccLQQGAWOQ65cnuNLtg==
+  optionalDependencies:
+    "@astrojs/compiler-binding-android-arm64" "0.5.3"
+    "@astrojs/compiler-binding-darwin-arm64" "0.5.3"
+    "@astrojs/compiler-binding-darwin-x64" "0.5.3"
+    "@astrojs/compiler-binding-linux-arm64-gnu" "0.5.3"
+    "@astrojs/compiler-binding-linux-arm64-musl" "0.5.3"
+    "@astrojs/compiler-binding-linux-x64-gnu" "0.5.3"
+    "@astrojs/compiler-binding-linux-x64-musl" "0.5.3"
+    "@astrojs/compiler-binding-wasm32-wasi" "0.5.3"
+    "@astrojs/compiler-binding-win32-arm64-msvc" "0.5.3"
+    "@astrojs/compiler-binding-win32-x64-msvc" "0.5.3"
+
+"@astrojs/compiler-rs@^0.5.2":
+  version "0.5.3"
+  resolved "https://registry.npmjs.org/@astrojs/compiler-rs/-/compiler-rs-0.5.3.tgz"
+  integrity sha512-rNSAYm5IcRJMpNm+cSMaaPNCmzCXIdiz67kcBwC1qN8eTmO48wEJ6hZdlGq60+0HIHwUlncfaMxti1Fk2uJu7w==
+  dependencies:
+    "@astrojs/compiler-binding" "0.5.3"
+
 "@astrojs/compiler@^2.13.0":
   version "2.13.1"
   resolved "https://registry.npmjs.org/@astrojs/compiler/-/compiler-2.13.1.tgz"
@@ -127,6 +155,11 @@
   version "1.1.0"
   resolved "https://registry.npmjs.org/@oslojs/encoding/-/encoding-1.1.0.tgz"
   integrity sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==
+
+"@prettier/parse-srcset@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@prettier/parse-srcset/-/parse-srcset-3.1.0.tgz"
+  integrity sha512-FIRv2rZotO9NP/r66taYqD1zICpPiBbrECqjKV/xqNotqDxF7fLzzUeK+1RSRx9Tenk0DajR/GcRmTJ2qtHaKQ==
 
 "@rollup/pluginutils@^5.3.0":
   version "5.5.1"
@@ -1587,6 +1620,20 @@ postcss@^8.5.3:
     picocolors "^1.1.1"
     source-map-js "^1.2.2"
 
+prettier-plugin-astro@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/prettier-plugin-astro/-/prettier-plugin-astro-1.1.2.tgz"
+  integrity sha512-vKyJW7Bb/QcIPUebEehbG+Tn+3yTIhoJ8ecm6NyJgcOj5T2xP+eF1IxY4zv809YyA69nV4ZFj+H9mdpC5cTaQA==
+  dependencies:
+    "@astrojs/compiler-rs" "^0.5.2"
+    "@prettier/parse-srcset" "^3.1.0"
+    sass-formatter "^0.8.0"
+
+prettier@^3.5.3, prettier@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-3.10.1.tgz"
+  integrity sha512-70vp3ZUYoPlFbF9uiTdXHUUCGEIp7d4+6p+8DYbkm2jP7x/3i/paXVF6dopSI3zd/CEitrZN1rc4i85xWmmXlg==
+
 prismjs@^1.30.0:
   version "1.30.0"
   resolved "https://registry.npmjs.org/prismjs/-/prismjs-1.30.0.tgz"
@@ -1795,6 +1842,18 @@ rollup@^1.20.0||^2.0.0||^3.0.0||^4.0.0, rollup@^4.34.9:
     "@rollup/rollup-win32-x64-msvc" "4.68.3"
     fsevents "~2.3.2"
 
+s.color@0.0.15:
+  version "0.0.15"
+  resolved "https://registry.npmjs.org/s.color/-/s.color-0.0.15.tgz"
+  integrity sha512-AUNrbEUHeKY8XsYr/DYpl+qk5+aM+DChopnWOPEzn8YKzOhv4l2zH6LzZms3tOZP3wwdOyc0RmTciyi46HLIuA==
+
+sass-formatter@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.npmjs.org/sass-formatter/-/sass-formatter-0.8.0.tgz"
+  integrity sha512-Nf4eMGE2O5vnJG7KPCRyksWS9gVKSYoUWtPeMXRRxwZSPVQhSGtL602xVYS65LvMkHmkvKa7xpauF0+/5pPwrg==
+  dependencies:
+    suf-log "^2.5.3"
+
 sax@1.6.1:
   version "1.6.1"
   resolved "https://registry.npmjs.org/sax/-/sax-1.6.1.tgz"
@@ -1912,6 +1971,13 @@ strip-ansi@^7.1.0:
   integrity sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==
   dependencies:
     ansi-regex "^6.2.2"
+
+suf-log@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.npmjs.org/suf-log/-/suf-log-2.5.3.tgz"
+  integrity sha512-KvC8OPjzdNOe+xQ4XWJV2whQA0aM1kGVczMQ8+dStAO6KfEB140JEVQ9dE76ONZ0/Ylf67ni4tILPJB41U0eow==
+  dependencies:
+    s.color "0.0.15"
 
 svgo@^4.0.0:
   version "4.1.0"
