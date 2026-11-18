@@ -1,9 +1,9 @@
 ---
 title: Solving linear systems with springs
-description: The connection between mechanical equilibrium and the solution of a linear system.
-tags: ['Linear algebra', 'Unconventional computing', 'Thermodynamic computing']
+description: Exploring the connection between mechanical equilibrium and the solution of a linear system.
+tags: ['Linear algebra', 'Unconventional computing', 'Simulation']
 order: 2
-status: Write-up forthcoming
+status: ""
 ---
 
 ## Overview
