@@ -1,17 +1,37 @@
 ---
-import Header from '../components/Header.astro';
-import Sidebar from '../components/Sidebar.astro';
-import { profile } from '../data/profile';
-import '../styles/styles.css';
-import '../styles/themes.css';
-interface Props { title?: string; description?: string; selectedItem: string }
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+import { profile } from "../data/profile";
+import "../styles/styles.css";
+import "../styles/themes.css";
+interface Props {
+  title?: string;
+  description?: string;
+  selectedItem: string;
+}
 const { title, description, selectedItem } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <Header title={title ? `${title} | ${profile.name}` : profile.name} description={description} />
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="content"><Sidebar selectedItem={selectedItem} /><main id="main" class="main"><div class="container"><slot /><footer class="site-footer">© {new Date().getFullYear()} {profile.name}</footer></div></main></div>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div class="content">
+      <Sidebar selectedItem={selectedItem} />
+      <main id="main" class="main">
+        <div class="container">
+          <slot />
+          <footer class="site-footer">
+            <span>© {new Date().getFullYear()} {profile.name}</span>
+            <script type="module" src="https://cdn.jsdelivr.net/npm/fairy-ring@0.2/dist/standalone.js"></script>
+            <link rel="stylesheet" href="https://ring.loga.nz/fairy-ring.css" />
+            <fairy-ring class="wip-ring" config-url="https://ring.loga.nz/fairy-ring.toml"></fairy-ring>
+          </footer>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
